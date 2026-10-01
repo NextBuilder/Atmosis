@@ -1,0 +1,12 @@
+profiles:
+  default:
+    fqbn: arduino:zephyr:unoq
+    platforms:
+      - platform: arduino:zephyr
+    libraries:
+      - Adafruit DPS310 (1.1.6)
+      - Adafruit BusIO (1.17.3)
+      - Adafruit Unified Sensor (1.1.15)
+      - Adafruit NeoPixel (1.15.5)
+
+default_profile: default
