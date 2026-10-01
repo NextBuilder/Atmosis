@@ -1,0 +1,9 @@
+name: Atmosis
+description: Premium indoor air intelligence with on-device AI.
+icon: 🌿
+version: "1.2"
+
+ports:
+  - 7000
+
+bricks: []
