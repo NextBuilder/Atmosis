@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Images/Atmosis%2002.png" width="900"/>
+<img src="Images/Atmosis%2002.png" width="100%"/>
 
 # Atmosis
 
@@ -45,7 +45,7 @@ The safety features run on the board itself, so the light strip and the dust and
 ## Telegram Alerts
 
 <div align="center">
-<img src="Images/30A.png" width="720"/>
+<img src="Images/30A.png" width="80%"/>
 </div>
 
 Every alert is a short card with the air score, all readings, one clear action and a tip from Gemini.
@@ -55,14 +55,14 @@ Every alert is a short card with the air score, all readings, one clear action a
 | Air score drops to 35 | Air quality needs attention |
 | PM2.5 goes above 150 µg/m³ | Very high dust level |
 | CO goes above 9 ppm | Carbon monoxide alert, sent instantly |
-| Edge Impulse spots indoor pollution or poor ventilation | Air pattern alert |
-| The board stops responding for 2 minutes | Sensors offline |
+| Indoor pollution or poor ventilation detected | Air pattern alert |
+| Board silent for 2 minutes | Sensors offline |
 | Every evening at 9 PM | Daily report with averages and peaks |
 
 ## How It Works
 
 <div align="center">
-<img src="Images/Architecture.png" width="860"/>
+<img src="Images/Architecture.png" width="100%"/>
 </div>
 
 The **Arduino UNO Q** has two processors on one board, and Atmosis uses both:
@@ -75,7 +75,7 @@ Once a second, the microcontroller sends a fresh set of readings to Linux. Nothi
 ## Edge Impulse
 
 <div align="center">
-<img src="Images/Pipeline.png" width="860"/>
+<img src="Images/Pipeline.png" width="100%"/>
 <br/>
 <img src="Images/17.png" width="49%"/>
 <img src="Images/19.png" width="49%"/>
@@ -98,13 +98,13 @@ The model runs directly on the UNO Q. To avoid false alarms, a new pattern has t
 ## Hardware
 
 <div align="center">
-<img src="Images/1.png" width="860"/>
+<img src="Images/1.png" width="100%"/>
 </div>
 
 | Component | Purpose | Link |
 |---|---|---|
-| Arduino UNO Q | Main board — microcontroller + Linux | [Amazon](https://www.amazon.com/ABX00173-Dragonwing-microprocessor-STM32U585-Microcontroller/dp/B0GFN669S4/) |
-| Waveshare Environment X6 | IAQ, VOCs, formaldehyde, CO, temperature, humidity | [Waveshare](https://www.waveshare.com/environment-x6-sensor.htm?&aff_id=135301) |
+| Arduino UNO Q | Main board | [Amazon](https://www.amazon.com/ABX00173-Dragonwing-microprocessor-STM32U585-Microcontroller/dp/B0GFN669S4/) |
+| Waveshare Environment X6 | Gases, temperature, humidity | [Waveshare](https://www.waveshare.com/environment-x6-sensor.htm?&aff_id=135301) |
 | Waveshare Dust Sensor | PM2.5 dust | [Waveshare](https://www.waveshare.com/dust-sensor.htm?&aff_id=135301) |
 | DPS310 Pressure Sensor | Pressure and altitude | [Amazon](https://www.amazon.com/Industrial-Temperature-Supporting-Microcontrollers-Measurement/dp/B0H5NQJ7RR/) |
 | Waveshare RGB COB Strip | Air-quality light | [Waveshare](https://www.waveshare.com/rgb-27-5v-160d.htm?sku=34160?&aff_id=135301) |
@@ -112,39 +112,32 @@ The model runs directly on the UNO Q. To avoid false alarms, a new pattern has t
 ## Wiring
 
 <div align="center">
-<img src="Images/Connection.png" width="820"/>
+<img src="Images/Connection.jpg" width="100%"/>
 </div>
 
-| Waveshare X6 | UNO Q | | Dust Sensor | UNO Q |
-|---|---|---|---|---|
-| VCC | 5V | | VCC | 5V |
-| GND | GND | | GND | GND |
-| TXD | D0 | | ILED | D4 |
-| RXD | D1 | | AOUT | A0 |
-
-| DPS310 | UNO Q | | RGB Strip | UNO Q |
-|---|---|---|---|---|
-| VIN | 3.3V | | DIN | D5 |
-| GND | GND | | VCC | 5V |
-| SDI | SDA | | GND | GND |
-| SCK | SCL | | | |
+| Module | Power | Signal |
+|---|---|---|
+| **Environment X6** | 5V · GND | TXD → D0 · RXD → D1 |
+| **Dust Sensor** | 5V · GND | ILED → D4 · AOUT → A0 |
+| **DPS310** | 3.3V · GND | SDI → SDA · SCK → SCL |
+| **RGB Strip** | 5V · GND | DIN → D5 |
 
 > **Tip:** On the SmartElex DPS310, `SCK` is the clock pin and `SDI` is the data pin. Leave `SDO` and `CS` unconnected.
 
 ## Enclosure
 
 <div align="center">
-<img src="Images/32.png" width="66%"/>
+<img src="Images/32.png" width="80%"/>
 <br/>
-<img src="Images/31.png" width="22%"/>
-<img src="Images/33.png" width="22%"/>
-<img src="Images/34.png" width="22%"/>
+<img src="Images/31.png" width="32%"/>
+<img src="Images/33.png" width="32%"/>
+<img src="Images/34.png" width="32%"/>
 </div>
 
 A compact two-part 3D-printed case, designed around the UNO Q and all three sensors. Angled slots on the front and sides let room air flow across the sensors, and the lid comes off easily for wiring. The CAD files are in the [`CAD Design`](CAD%20Design) folder.
 
 <div align="center">
-<img src="Images/26.png" width="820"/>
+<img src="Images/26.png" width="100%"/>
 <br/>
 <sub>Inside, after wiring and assembly</sub>
 </div>
@@ -160,14 +153,13 @@ Full setup and troubleshooting are in the [App Lab guide](Arduino%20App%20Lab).
 
 ## Repository
 
-```
-Atmosis/
-├── Arduino App Lab/        Firmware, Python app, dashboard and Edge Impulse model
-├── Data Collection Code/   Sketch used to record the training data
-├── Circuit Diagram/        Wiring diagram
-├── CAD Design/             3D-printable enclosure
-└── Images/                 Photos and screenshots
-```
+| Folder | Contents |
+|---|---|
+| [`Arduino App Lab`](Arduino%20App%20Lab) | Firmware, Python app, dashboard and Edge Impulse model |
+| [`Data Collection Code`](Data%20Collection%20Code) | Sketch used to record the training data |
+| [`Circuit Diagram`](Circuit%20Diagram) | Wiring diagram |
+| [`CAD Design`](CAD%20Design) | 3D-printable enclosure |
+| [`Images`](Images) | Photos and screenshots |
 
 ## In Action
 
